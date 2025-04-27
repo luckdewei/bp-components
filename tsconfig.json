@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    // 使用的ES版本
+    "module": "ESNext",
+    "declaration": false, // 默认不要声明文件
+    // 强制代码中使用的模块文件名必须和文件系统中的文件名保持大小写一致
+    "forceConsistentCasingInFileNames": true,
+    // 允许使用 xxx 代替 * as xxx 导入
+    "allowSyntheticDefaultImports": true,
+    // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "jsx": "preserve",
+    // 用来指定编译时是否生成.map文件
+    "sourceMap": true,
+    // 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
+    "esModuleInterop": true,
+    // 是否可以导入 json module
+    "resolveJsonModule": true,
+    // 是否检测定义了但是没使用的变量
+    "noUnusedLocals": true,
+    // 是否检查是否有在函数体中没有使用的参数
+    "noUnusedParameters": true,
+    // 是否启用实验性的装饰器特性
+    "experimentalDecorators": true,
+    // ts中可以使用的库 这里配置为 dom 与 es模块
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    // 不允许变量或函数参数具有隐式any类型
+    "noImplicitAny": false,
+    // 启用阻止对下载库的类型检查
+    "skipLibCheck": true,
+    "removeComments": true // 删除注释
+  },
+  // 指定不需要编译的文件
+  "exclude": [
+    "node_modules",
+    "dist/**",
+    "**/__tests__"
+  ]
+}
