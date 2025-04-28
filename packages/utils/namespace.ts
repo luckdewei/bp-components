@@ -1,4 +1,4 @@
-const defaultPrefix = 'qy'
+export const defaultPrefix = 'qy'
 
 const statePrefix = 'is-'
 
@@ -22,7 +22,7 @@ const _bem = (
   return cls
 }
 
-const createBEM = (prefix: string) => {
+export const createBEM = (prefix: string) => {
   const b = (blockSuffix: string = '') => _bem(prefix, blockSuffix, '', '')
   const e = (element: string = '') => element ? _bem(prefix, '', element, '') : ''
   const m = (modifier: string = '') => modifier ? _bem(prefix, '', '', modifier) : ''
@@ -52,9 +52,8 @@ const createBEM = (prefix: string) => {
 }
 
 
-const createNamespace = (name: string) => {
+export const createNamespace = (name: string) => {
   const prefixName = `${defaultPrefix}-${name}`
   return createBEM(prefixName)
 }
 
-createNamespace('icon')

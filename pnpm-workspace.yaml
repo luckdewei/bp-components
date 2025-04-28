@@ -1,4 +1,7 @@
 packages:
-  - play # 存放组件测试代码
-  - docs # 存放组件文档
-  - "packages/*" # 存放组件代码
+  - play
+  - docs
+  - packages/*
+
+ignoredBuiltDependencies:
+  - esbuild
