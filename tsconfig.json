@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ESNext",
+    "target": "ES6",
     // 使用的ES版本
     "module": "ESNext",
     "declaration": false, // 默认不要声明文件
@@ -16,7 +16,7 @@
     // 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
     "esModuleInterop": true,
     // 是否可以导入 json module
-    "resolveJsonModule": true,
+    // "resolveJsonModule": true,
     // 是否检测定义了但是没使用的变量
     "noUnusedLocals": true,
     // 是否检查是否有在函数体中没有使用的参数
