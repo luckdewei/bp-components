@@ -1,16 +1,15 @@
-
-export const defaultNamespace = 'qy'
+const defaultPrefix = 'qy'
 
 const statePrefix = 'is-'
 
 const _bem = (
-  namespace: string,
-  block: string,
+  prefixName: string,
   blockSuffix: string,
   element: string,
   modifier: string
 ) => {
-  let cls = `${namespace}-${block}`
+  let cls = `${prefixName}`
+
   if (blockSuffix) {
     cls += `-${blockSuffix}`
   }
@@ -23,30 +22,15 @@ const _bem = (
   return cls
 }
 
-export const createNamespace = (block: string, newnamespace?: string) => {
-  const namespace = newnamespace || defaultNamespace
-  const b = (blockSuffix = '') =>
-    _bem(namespace, block, blockSuffix, '', '')
-  const e = (element?: string) =>
-    element ? _bem(namespace, block, '', element, '') : ''
-  const m = (modifier?: string) =>
-    modifier ? _bem(namespace, block, '', '', modifier) : ''
-  const be = (blockSuffix?: string, element?: string) =>
-    blockSuffix && element
-      ? _bem(namespace, block, blockSuffix, element, '')
-      : ''
-  const em = (element?: string, modifier?: string) =>
-    element && modifier
-      ? _bem(namespace, block, '', element, modifier)
-      : ''
-  const bm = (blockSuffix?: string, modifier?: string) =>
-    blockSuffix && modifier
-      ? _bem(namespace, block, blockSuffix, '', modifier)
-      : ''
-  const bem = (blockSuffix?: string, element?: string, modifier?: string) =>
-    blockSuffix && element && modifier
-      ? _bem(namespace, block, blockSuffix, element, modifier)
-      : ''
+const createBEM = (prefix: string) => {
+  const b = (blockSuffix: string = '') => _bem(prefix, blockSuffix, '', '')
+  const e = (element: string = '') => element ? _bem(prefix, '', element, '') : ''
+  const m = (modifier: string = '') => modifier ? _bem(prefix, '', '', modifier) : ''
+  const be = (blockSuffix: string, element: string) => blockSuffix && element ? _bem(prefix, blockSuffix, element, '') : ''
+  const bm = (blockSuffix: string, modifier: string) => blockSuffix && modifier ? _bem(prefix, blockSuffix, '', modifier) : ''
+  const em = (element: string, modifier: string) => element && modifier ? _bem(prefix, '', element, modifier) : ''
+  const bem = (blockSuffix: string, element: string, modifier: string) => blockSuffix && element && modifier ? _bem(prefix, blockSuffix, element, modifier) : ''
+
   const is: {
     (name: string, state: boolean | undefined): string
     (name: string): string
@@ -56,7 +40,6 @@ export const createNamespace = (block: string, newnamespace?: string) => {
   }
 
   return {
-    namespace,
     b,
     e,
     m,
@@ -66,4 +49,12 @@ export const createNamespace = (block: string, newnamespace?: string) => {
     bem,
     is
   }
-};
+}
+
+
+const createNamespace = (name: string) => {
+  const prefixName = `${defaultPrefix}-${name}`
+  return createBEM(prefixName)
+}
+
+createNamespace('icon')
