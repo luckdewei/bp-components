@@ -6,3 +6,9 @@ const Icon = withInstall(_Icon)
 export default Icon
 
 export * from './src/icon'
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    QyIcon: typeof Icon
+  }
+}
