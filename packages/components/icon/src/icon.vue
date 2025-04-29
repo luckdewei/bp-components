@@ -21,8 +21,8 @@ const props = defineProps(IconProps)
 const style = computed(() => {
     if (!props.size && !props.color) return {}
     return {
-        ...props.size ? {'font-size': props.size+'px'} : {},
-        ...props.color ? {'color': props.color} : {},
+        ...props.size ? { 'font-size': props.size + 'px' } : {},
+        ...props.color ? { 'color': props.color } : {},
     }
 })
 

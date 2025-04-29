@@ -1,6 +1,6 @@
 <template>
   <qy-icon size="20" color="blue">
-    <Accessibility/>
+    <Accessibility />
   </qy-icon>
 </template>
 

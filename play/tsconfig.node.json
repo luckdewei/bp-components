@@ -4,7 +4,11 @@
     "target": "ES2022",
     "lib": ["ES2023"],
     "module": "ESNext",
+    "baseUrl": "./",
     "skipLibCheck": true,
+    "paths": {
+      "vite-plugin-eslint": ["node_modules/vite-plugin-eslint/dist/index.d.ts"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
