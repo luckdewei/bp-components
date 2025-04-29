@@ -1,10 +1,8 @@
 <template>
   hello word
-  <Icon></Icon>
+  <qy-icon size="16" color="red"></qy-icon>
 </template>
 
 <script lang="ts" setup>
-import Icon from '@qy-ui/components/icon/src/icon.vue'
-console.log(Icon);
 
 </script>

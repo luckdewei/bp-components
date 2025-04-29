@@ -2,6 +2,3 @@ packages:
   - play
   - docs
   - packages/*
-
-ignoredBuiltDependencies:
-  - esbuild

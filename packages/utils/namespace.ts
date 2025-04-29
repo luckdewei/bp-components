@@ -1,5 +1,4 @@
 export const defaultPrefix = 'qy'
-
 const statePrefix = 'is-'
 
 const _bem = (

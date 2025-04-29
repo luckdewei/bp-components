@@ -3,14 +3,10 @@
     "strict": true,
     "target": "ES6",
     // 使用的ES版本
-    "module": "NodeNext",
+    "module": "ESNext",
     // 指定生成代码的模板
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "declaration": false, // 默认不要声明文件
-    "baseUrl": ".",
-    "paths": {
-      "vue": ["node_modules/vue/dist/vue.d.ts"]
-    },
     // 强制代码中使用的模块文件名必须和文件系统中的文件名保持大小写一致
     "forceConsistentCasingInFileNames": true,
     // 允许使用 xxx 代替 * as xxx 导入
@@ -22,7 +18,7 @@
     // 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
     "esModuleInterop": true,
     // 是否可以导入 json module
-    // "resolveJsonModule": true,
+    "resolveJsonModule": true,
     // 是否检测定义了但是没使用的变量
     "noUnusedLocals": true,
     // 是否检查是否有在函数体中没有使用的参数

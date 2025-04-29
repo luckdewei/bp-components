@@ -1,0 +1,8 @@
+import _Icon from './src/icon.vue'
+import { withInstall } from '@qy-ui/utils'
+
+const Icon = withInstall(_Icon)
+
+export default Icon
+
+export * from './src/icon'
