@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm -C play run dev"
+    "dev": "pnpm -C play run dev",
+    "dev:docs": "pnpm -C docs run dev"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,9 @@
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
     "@eslint/js": "^9.25.1",
-    "@qy-ui/components": "workspace:^",
-    "@qy-ui/theme-chalk": "workspace:^",
-    "@qy-ui/utils": "workspace:^",
+    "@nz-ui/components": "workspace:^",
+    "@nz-ui/theme-chalk": "workspace:^",
+    "@nz-ui/utils": "workspace:^",
     "eslint": "^9.25.1",
     "eslint-plugin-vue": "^10.0.1",
     "globals": "^16.0.0",
