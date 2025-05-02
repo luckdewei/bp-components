@@ -1,6 +1,11 @@
 <template>
     <i :class="bem.b()" :style="style">
-        <slot></slot>
+        <template v-if="props.component">
+            <component :is="props.component" />
+        </template>
+        <template v-else>
+            <slot></slot>
+        </template>
     </i>
 </template>
 
@@ -19,10 +24,11 @@ const bem = createNamespace('icon')
 const props = defineProps(IconProps)
 
 const style = computed(() => {
-    if (!props.size && !props.color) return {}
+    if (!props.size && !props.color && !props.rotate) return {}
     return {
         ...props.size ? { 'font-size': props.size + 'px' } : {},
         ...props.color ? { 'color': props.color } : {},
+        ...props.rotate ? { transform: `rotate(${props.rotate})` } : {}
     }
 })
 

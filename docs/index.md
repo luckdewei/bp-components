@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: nz-ui
+  name: NZ-UI Components
   text: 一个Vue3组件库
   tagline: 基于vue3 支持TS
   image:
