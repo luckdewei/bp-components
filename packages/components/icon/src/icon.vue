@@ -6,12 +6,12 @@
 
 <script setup lang="ts">
 
-import { createNamespace } from '@qy-ui/utils/namespace'
+import { createNamespace } from '@nz-ui/utils/namespace'
 import { IconProps } from './icon'
 import { computed } from 'vue'
 
 defineOptions({ // vue3.3.x 语法糖，定义组件名称
-    name: 'qy-icon',
+    name: 'nz-icon',
 })
 
 const bem = createNamespace('icon')

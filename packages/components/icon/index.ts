@@ -1,5 +1,5 @@
 import _Icon from './src/icon.vue'
-import { withInstall } from '@qy-ui/utils'
+import { withInstall } from '@nz-ui/utils'
 
 const Icon = withInstall(_Icon)
 
@@ -9,6 +9,6 @@ export * from './src/icon'
 
 declare module 'vue' {
   export interface GlobalComponents {
-    QyIcon: typeof Icon
+    nzIcon: typeof Icon
   }
 }

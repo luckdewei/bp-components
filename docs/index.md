@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: qy-ui
+  name: nz-ui
   text: 一个Vue3组件库
   tagline: 基于vue3 支持TS
   image:

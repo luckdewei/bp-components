@@ -1,4 +1,4 @@
-export const defaultPrefix = 'qy'
+export const defaultPrefix = 'nz'
 const statePrefix = 'is-'
 
 const _bem = (

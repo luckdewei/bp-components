@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import Icon from '@qy-ui/components/icon'
-import '@qy-ui/theme-chalk/src/index.scss'
+import Icon from '@nz-ui/components/icon'
+import '@nz-ui/theme-chalk/src/index.scss'
 
 const plugins = [Icon]
 

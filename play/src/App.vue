@@ -1,7 +1,7 @@
 <template>
-  <qy-icon size="20" color="blue">
+  <nz-icon size="20" color="blue">
     <Accessibility />
-  </qy-icon>
+  </nz-icon>
 </template>
 
 <script lang="ts" setup>
