@@ -9,6 +9,6 @@ export * from './src/icon'
 
 declare module 'vue' {
   export interface GlobalComponents {
-    nzIcon: typeof Icon
+    NzIcon: typeof Icon
   }
 }
