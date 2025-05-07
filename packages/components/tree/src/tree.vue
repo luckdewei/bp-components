@@ -4,13 +4,14 @@
       v-for="node in flattenTree" :key="node.key"
       :node="node"
       :is-expanded="isExpanded(node)"
+      @toggle="toggleExpand"
     ></nz-tree-node>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { TreeNode, TreeOption, TreeProps } from './tree'
+import { Key, TreeNode, TreeOption, TreeProps } from './tree'
 import NzTreeNode from './tree-node.vue'
 import { createNamespace } from '@nz-ui/utils/namespace'
 
@@ -60,9 +61,21 @@ watch(
   }
 )
 
+// 默认展开的节点集合
 const expendedKeysSet = ref(new Set(props.defaultExpandedKeys))
+// 监听默认展开的节点变化，更新集合
+watch(
+  () => props.defaultExpandedKeys,
+  (val: Key[]) => {
+    expendedKeysSet.value = new Set(val)
+  },
+  {
+    immediate: true,
+  }
+)
 
-// 将需要展开的节点找出
+
+// 将需要展开的节点找出(只有父节点展开了，他的子节点才会展开)
 const flattenTree = computed(() => {
   const expandedKeys = expendedKeysSet.value
   const flattenNodes: TreeNode[] = []
@@ -88,11 +101,19 @@ const flattenTree = computed(() => {
   return flattenNodes
 })
 
-console.log('flattenNodes', flattenTree.value)
+// console.log('flattenNodes', flattenTree.value)
 
-
+// 判断节点是否展开
 function isExpanded(node: TreeNode): boolean {
   return expendedKeysSet.value.has(node.key)
+}
+// 展开或折叠节点
+function toggleExpand(node: TreeNode) {
+    if (expendedKeysSet.value.has(node.key)) {
+      expendedKeysSet.value.delete(node.key)
+    } else {
+      expendedKeysSet.value.add(node.key)
+    }
 }
 
 

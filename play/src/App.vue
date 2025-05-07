@@ -4,7 +4,7 @@
   </nz-icon>
   <nz-icon rotate="20deg" :component="HomeOutline" />
 
-  <nz-tree :data="data" :default-expanded-keys="['40', '41','403020', '4130']" />
+  <nz-tree :data="data" :default-expanded-keys="['40', '41']" />
 </template>
 
 <script lang="ts" setup>
