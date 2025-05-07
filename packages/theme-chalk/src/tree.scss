@@ -1,0 +1,38 @@
+@use 'mixins/mixins' as *;
+
+@include b(tree) {
+  position: relative;
+  cursor: default;
+  display: inline-block;
+  width: 100%;
+}
+@include b(tree-node) {
+  
+  padding: 5px 0;
+  &:hover {
+    --n-node-color-hover: rgb(243, 243, 245);
+    background: var(--n-node-color-hover);
+  }
+  @include e(content) {
+    display: flex;
+    align-items: center;
+  }
+  @include e(expand-icon) {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 6px;
+    box-sizing: content-box;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-in-out;
+    &.is-expanded {
+      transform: rotate(90deg);
+    }
+    &.is-leaf {
+      color: transparent;
+      cursor: default;
+      visibility: hidden;
+    }
+  }
+    
+}

@@ -7,6 +7,8 @@ declare module 'vite-plugin-eslint' {
     exclude?: string | string[]
     cache?: boolean
     fix?: boolean
+    throwOnWarning?: boolean
+    throwOnError?: boolean
     formatter?: string
     eslintPath?: string
   }
