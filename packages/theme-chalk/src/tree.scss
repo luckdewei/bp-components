@@ -1,10 +1,22 @@
 @use 'mixins/mixins' as *;
 
+@keyframes transform {
+  from{
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @include b(tree) {
   position: relative;
   cursor: default;
   display: inline-block;
   width: 100%;
+  svg.loading {
+    animation: transform 1s linear infinite;
+  }
 }
 @include b(tree-node) {
   

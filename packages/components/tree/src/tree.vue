@@ -1,9 +1,11 @@
 <template>
   <div :class="bem.b()">
-    <nz-tree-node 
-      v-for="node in flattenTree" :key="node.key"
+    <nz-tree-node
+      v-for="node in flattenTree"
+      :key="node.key"
       :node="node"
       :is-expanded="isExpanded(node)"
+      :loadingKeys="loadingKeysSet"
       @toggle="toggleExpand"
     ></nz-tree-node>
   </div>
@@ -25,20 +27,20 @@ const props = defineProps(TreeProps)
 
 const tree = ref<TreeNode[]>([])
 // 对用户数据格式化 label key children
-function createTree(data: TreeOption[]): TreeNode[] {
+function createTree(data: TreeOption[], parent: TreeNode | null = null): TreeNode[] {
   function traversal(
     data: TreeOption[],
-    parent?: TreeNode | undefined
+    parent: TreeNode | null = null
   ): TreeNode[] {
-    return data.map((node) => {
+    return data.map((node: TreeOption) => {
       const children = node.children ? node.children : []
       const treeNode: TreeNode = {
         key: (node[props.keyField] || node['key']) as string,
         label: (node[props.labelField] || node['label']) as string,
         children: [],
         level: parent ? parent.level + 1 : 0,
-        parent: parent || undefined,
-        isLeaf: children.length === 0,
+        parent: parent || null,
+        isLeaf: node.isLeaf ?? children.length === 0,
         rawNode: node,
       }
       if (children.length) {
@@ -47,7 +49,7 @@ function createTree(data: TreeOption[]): TreeNode[] {
       return treeNode
     })
   }
-  const result: TreeNode[] = traversal(data)
+  const result: TreeNode[] = traversal(data, parent)
   return result
 }
 // 数据变化时重新构建树
@@ -73,7 +75,6 @@ watch(
     immediate: true,
   }
 )
-
 
 // 将需要展开的节点找出(只有父节点展开了，他的子节点才会展开)
 const flattenTree = computed(() => {
@@ -107,14 +108,42 @@ const flattenTree = computed(() => {
 function isExpanded(node: TreeNode): boolean {
   return expendedKeysSet.value.has(node.key)
 }
-// 展开或折叠节点
-function toggleExpand(node: TreeNode) {
-    if (expendedKeysSet.value.has(node.key)) {
-      expendedKeysSet.value.delete(node.key)
-    } else {
-      expendedKeysSet.value.add(node.key)
-    }
+
+function collapse(node: TreeNode) {
+  expendedKeysSet.value.delete(node.key)
 }
 
+const loadingKeysSet = ref(new Set<Key>())
 
+function triggerLoading(node: TreeNode) {
+  // 需要异步加载
+  if (!node.children.length && !node.isLeaf) {
+    // 正在加载时不予许重复点击
+    if (loadingKeysSet.value.has(node.key)) return
+    loadingKeysSet.value.add(node.key)
+    if (props.onLoad) {
+      props.onLoad(node.rawNode).then((children) => {
+        // 更新节点数据
+        node.rawNode.children = children
+        // 更新内部节点数据结构
+        node.children = createTree(children, node)
+        loadingKeysSet.value.delete(node.key)
+      })
+    }
+  }
+}
+
+function expend(node: TreeNode) {
+  expendedKeysSet.value.add(node.key)
+  // 异步加载子节点
+  triggerLoading(node)
+}
+// 展开或折叠节点
+function toggleExpand(node: TreeNode) {
+  if (expendedKeysSet.value.has(node.key) && !loadingKeysSet.value.has(node.key)) {
+    collapse(node)
+  } else {
+    expend(node)
+  }
+}
 </script>

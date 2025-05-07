@@ -6,7 +6,7 @@ export interface TreeNode extends Required<TreeOption> {
     level: number,
     children: TreeNode[],
     isLeaf: boolean,
-    parent: TreeNode | undefined,
+    parent: TreeNode | null,
     rawNode: TreeOption // 原始节点数据
 }
 
@@ -14,6 +14,7 @@ export interface TreeOption {
     label?: string,
     key?: Key,
     children?: TreeOption[],
+    isLeaf?: boolean,
     [key: string]: unknown
 }
 
@@ -33,6 +34,9 @@ const TreeProps = {
     keyField: {
         type: String,
         default: 'key'
+    },
+    onLoad: {
+       type: Function as PropType<(node:TreeOption) => Promise<TreeOption[]>>
     }
 } as const
 
@@ -50,6 +54,10 @@ export const TreeNodeProps = {
     isExpanded: {
         type: Boolean,
         default: false
+    },
+    loadingKeys: {
+        type: Object as PropType<Set<Key>>,
+        required: true
     }
 } as const
 
